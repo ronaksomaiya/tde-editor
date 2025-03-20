@@ -72,15 +72,15 @@ const Editor = (props) => {
     setTemplateJSON(template);
   };
 
-  const handleCollectionChange = (collection) => {
+  const handleCollectionsChange = (collections) => {
     let template = templateJSON;
-    template.template.collections = [collection];
+    template.template.collections = collections.split("OR").map(item => item.trim());
     setTemplateJSON(template);
   };
 
-  const handleDirectoryChange = (directory) => {
+  const handleDirectoriesChange = (directories) => {
     let template = templateJSON;
-    template.template.directories = [directory];
+    template.template.directories = directories.split("OR").map(item => item.trim());
     setTemplateJSON(template);
   };
   // Template Management (end)
@@ -341,14 +341,14 @@ const Editor = (props) => {
           <Template
             templateURI={selectedTemplateURI}
             context={templateJSON.template.context}
-            collection={templateJSON.template.collections}
-            directory={templateJSON.template.directories}
+            collections={templateJSON.template.collections}
+            directories={templateJSON.template.directories}
             description={templateJSON.template.description}
             handleURIChange={handleURIChange}
             handleDescriptionChange={handleDescriptionChange}
             handleContextChange={handleContextChange}
-            handleCollectionChange={handleCollectionChange}
-            handleDirectoryChange={handleDirectoryChange}
+            handleCollectionsChange={handleCollectionsChange}
+            handleDirectoriesChange={handleDirectoriesChange}
           />
           <SampleDocs
             uris={sampleURIs}
